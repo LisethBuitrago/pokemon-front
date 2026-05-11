@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '', component: Inicio },
   { path: 'inicio', component: Inicio },
   { path: 'idioma', component: Idioma },
+  {path: 'login-administrador', component: LoginAdministrador },
   { path: '**', redirectTo: '' }
 ];
 
