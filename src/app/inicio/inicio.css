@@ -140,28 +140,31 @@ body, html {
 }
 
 .blink-text {
+
   background: none;
   border: none;
   padding: 0;
-  outline: none;
   font: inherit;
-  color: #fff;
-  font-size: 1.2rem;
-  margin: 0;
+  color: #ffffff;
   cursor: pointer;
-  animation: parpadeo 1.2s step-end infinite;
-}
-
-
-.blink-text:focus,
-.blink-text:active {
   outline: none;
-  background: none;
+  position: relative;
+  z-index: 10;
+  animation: parpadeo 1.2s infinite;
+  transition: color 0.3s ease-in-out, transform 0.2s ease;
 }
+
+
+.blink-text:hover {
+  color: #ff0000;
+  animation: none;
+  transform: scale(1.1);
+}
+
 
 @keyframes parpadeo {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  50% { opacity: 0.2; }
 }
 
 
@@ -169,4 +172,30 @@ body, html {
   .gameboy-frame { padding: 10px; }
   .pokemon-marco { width: 80px; height: 80px; }
   .subtitulo-edicion { font-size: 1rem; }
+}
+
+.boton-secreto {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  z-index: 99;
+}
+.cortina-negra {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s ease-in-out;
+  z-index: 1000;
+}
+
+.cortina-negra.visible {
+  opacity: 1;
+  pointer-events: all;
 }
