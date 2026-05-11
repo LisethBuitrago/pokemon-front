@@ -1,6 +1,9 @@
 <div class="pantalla-fondo">
   <div class="gameboy-frame">
+
+    <button class="boton-secreto" (click)="easterEgg()">
     <img [src]="personaje1" class="pokemon-marco p1" alt="Extra 1">
+    </button>
     <img [src]="personaje2" class="pokemon-marco p2" alt="Extra 2">
     <img [src]="personaje3" class="pokemon-marco p3" alt="Extra 3">
     <img [src]="personaje4" class="pokemon-marco p4" alt="Extra 4">
@@ -30,4 +33,5 @@
       </div>
     </div>
   </div>
+<div [class.cortina-negra]="estaCargando" ></div>
 

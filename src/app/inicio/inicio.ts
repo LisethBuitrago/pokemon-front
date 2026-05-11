@@ -16,8 +16,10 @@ export class Inicio implements OnInit, OnDestroy{
   personaje3: string="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/007.png";
 
 
-
   //musica pantalla principal y press start att:lis
+
+  estaCargando = false;
+
   private router = inject(Router);
   musicaFondo = new Audio('musicaprincipal.mp3');
 
@@ -32,9 +34,11 @@ export class Inicio implements OnInit, OnDestroy{
 
 
   presionarStart() {
+
     let audioBoton = new Audio();
     audioBoton.src = "botones.mp3";
     audioBoton.load();
+    this.estaCargando = true;
     audioBoton.play();
 
     setTimeout(() => {
@@ -49,5 +53,12 @@ export class Inicio implements OnInit, OnDestroy{
     }
   }
 
-
+//boton escondido att:lis
+  easterEgg() {
+    console.log("Sirve");
+    this.estaCargando = true;
+    setTimeout(() => {
+      this.router.navigate(['/login-administrador']);
+    }, 800) ;
+  }
 }
