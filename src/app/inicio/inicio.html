@@ -5,7 +5,7 @@
     <img [src]="personaje3" class="pokemon-marco p3" alt="Extra 3">
     <img [src]="personaje4" class="pokemon-marco p4" alt="Extra 4">
 
-    <div class="gameboy-screen">
+    <div class="gameboy-screen" (click)="reproducirMusicaFondo() ">
       <div class="fuego-container">
         <div class="particula-fuego"></div>
         <div class="particula-fuego"></div>
@@ -23,8 +23,8 @@
         <h2 class="subtitulo-edicion">Development<br>Edition 3</h2>
       </div>
       <div class="start-bar">
-        <div class="start-container" routerLink="/login">
-          <button class="blink-text">PRESS START</button>
+        <div class="start-container" >
+          <button class="blink-text" (click)="presionarStart()">PRESS START</button>
         </div>
       </div>
       </div>

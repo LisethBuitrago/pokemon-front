@@ -1,0 +1,27 @@
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-idioma',
+  standalone: false,
+  templateUrl: './idioma.html',
+  styleUrl: './idioma.css',
+})
+export class Idioma {
+  private router = inject(Router);
+  mapa: string = "https://i.pinimg.com/474x/1f/54/8b/1f548b23b9593e31b58d2e23c70f2293.jpg";
+
+  opcionSeleccionada: number | null = null;
+  seleccionarIdioma(idioma: string) {
+    let audioBoton = new Audio();
+    audioBoton.src = "botones.mp3";
+    audioBoton.load();
+    audioBoton.play();
+
+    console.log("Idioma elegido:", idioma);
+
+    setTimeout(() => {
+      this.router.navigate(['/siguiente']);
+    }, 800);
+  }
+}

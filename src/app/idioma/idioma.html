@@ -1,0 +1,26 @@
+<div class="pantalla-idioma">
+  <div class="fondo-borroso" [style.background-image]="'url(' + mapa + ')'"></div>
+
+  <div class="cuadro-gba-azul">
+    <div class="contenedor-opciones">
+      <p class="mensaje-bienvenida">WELCOME TO THE WORLD OF POKÉMON!</p>
+      <p class="mensaje-bienvenida">FIRST OF ALL, CHOOSE YOUR LANGUAGE:</p>
+
+      <div class="opcion"
+           (mouseenter)="opcionSeleccionada = 1"
+           (mouseleave)="opcionSeleccionada = null"
+           (click)="seleccionarIdioma('es')">
+        <span class="puntero" [class.visible]="opcionSeleccionada === 1">▶</span>
+        ESPAÑOL
+      </div>
+
+      <div class="opcion"
+           (mouseenter)="opcionSeleccionada = 2"
+           (mouseleave)="opcionSeleccionada = null"
+           (click)="seleccionarIdioma('en')">
+        <span class="puntero" [class.visible]="opcionSeleccionada === 2">▶</span>
+        ENGLISH
+      </div>
+    </div>
+  </div>
+</div>
