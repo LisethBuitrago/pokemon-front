@@ -1,0 +1,71 @@
+<div class="gameboy-screen">
+  <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/pikachu.gif" class="sprite-deco pika">
+  <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif" class="sprite-deco char">
+
+  <div class="contenedor-admin-centrado">
+    <div class="cuadro-dialogo main-box">
+
+      <div class="header-admin-title">
+        <span>▶ GESTIÓN DE POKÉMON - PANEL DE ADMIN</span>
+      </div>
+
+      <nav class="nav-menu-horizontal">
+        <div class="menu-item active" (click)="irAPokemon()">
+          <span class="selector">▶</span> POKÉMON
+        </div>
+        <div class="menu-item" (click)="irAAtaques()">
+          <span class="selector">○</span> ATAQUES
+        </div>
+        <div class="menu-item" (click)="irAObjetos()">
+          <span class="selector">○</span> OBJETOS
+        </div>
+        <div class="menu-item" (click)="irAEntrenadores()">
+          <span class="selector">○</span> JUGADORES
+        </div>
+      </nav>
+
+      <div class="search-box-gba">
+        <span class="search-icon">🔍</span>
+        <input type="text" [(ngModel)]="textoBusqueda" placeholder="Nombre o ID..." class="input-retro">
+      </div>
+
+      <div class="visor-contenido">
+        <ul class="pixel-list">
+          <li *ngFor="let p of listaFiltrada"
+              [class.selected]="pokemonSeleccionado === p.id"
+              (click)="seleccionarPokemon(p.id)">
+            <span class="cursor">{{ pokemonSeleccionado === p.id ? '▶' : '○' }}</span>
+            <span class="p-id">#{{ p.id }}</span>
+            <span class="p-name">{{ p.nombre }}</span>
+            <div class="p-types">
+              <span class="type-tag" *ngFor="let t of p.tipos">[{{ t }}]</span>
+            </div>
+            <span class="p-status" [ngClass]="p.activo ? 'online' : 'offline'">
+              {{ p.activo ? 'ACTIVO' : 'OFF' }}
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-gba-actions-final">
+
+        <div class="seccion-central-aceptar">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg" class="pokebola-btn">
+          <button class="btn-action-gba" (click)="irADetalles()">
+            [ ACEPTAR ]
+          </button>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Pok%C3%A9_Ball_icon.svg" class="pokebola-btn">
+        </div>
+
+        <div class="seccion-derecha-salir">
+          <img src="https://img.pokemondb.net/sprites/trainers/red.png" class="entrenador-btn">
+          <button class="btn-exit-retro-final" (click)="cerrarSesion()">
+            ▶ CERRAR SESIÓN
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

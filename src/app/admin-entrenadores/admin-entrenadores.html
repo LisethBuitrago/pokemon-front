@@ -1,0 +1,48 @@
+<div class="gameboy-screen admin-bg">
+
+  <div class="admin-layout">
+    <aside class="cuadro-dialogo sidebar-gba">
+      <h3 class="menu-title">ADMIN</h3>
+      <ul>
+        <li (click)="irAPokemon()"><span class="flecha">○</span> POKÉMON</li>
+        <li (click)="irAAtaques()"><span class="flecha">○</span> ATAQUES</li>
+        <li (click)="irAObjetos()"><span class="flecha">○</span> OBJETOS</li>
+        <li class="active" (click)="irAEntrenadores()"><span class="flecha">▶</span> JUGADORES</li>
+      </ul>
+      <button class="btn-logout-gba" (click)="cerrarSesion()">▶ SALIR</button>
+    </aside>
+
+    <section class="main-workspace">
+      <div class="cuadro-dialogo header-box-gba">
+        <h2 class="titulo-seccion">CONTROL DE JUGADORES</h2>
+        <div class="search-bar-gba">
+          <span>🔍</span>
+          <input type="text" placeholder="Buscar entrenador..." [(ngModel)]="textoBusqueda">
+        </div>
+      </div>
+
+      <div class="cuadro-dialogo list-box-gba">
+        <div class="retro-list-container">
+          <ul class="retro-list">
+            <li *ngFor="let e of listaFiltrada"
+                [class.selected]="entrenadorSeleccionado === e.id"
+                (click)="seleccionarEntrenador(e.id)">
+              <span class="cursor">{{ entrenadorSeleccionado === e.id ? '▶' : '○' }}</span>
+              <span class="col-id">{{ e.id }}</span>
+              <span class="col-name">{{ e.nombre }}</span>
+              <span class="col-type">[{{ e.rango }}]</span>
+              <span class="col-stats">[{{ e.region }}]</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-actions">
+          <button class="btn-gba" (click)="aceptar()">
+            <span class="flecha">▶</span> VER PERFIL
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
