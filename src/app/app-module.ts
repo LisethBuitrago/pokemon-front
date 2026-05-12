@@ -7,13 +7,12 @@ import { Inicio } from './inicio/inicio';
 import { Idioma } from './idioma/idioma';
 import { RouterModule } from '@angular/router';
 import { LoginAdministrador } from './login-administrador/login-administrador';
-import { FormsModule } from '@angular/forms';
-import { AdminPokemon } from './admin-pokemon/admin-pokemon';
-import { AdminAtaques } from './admin-ataques/admin-ataques';
+import { LoginUsuario } from './login-usuario/login-usuario';
+import { CrearcuentaUsuario } from './crearcuenta-usuario/crearcuenta-usuario';
 
 @NgModule({
-  declarations: [App, Inicio, Idioma, LoginAdministrador, AdminPokemon, AdminAtaques],
-  imports: [BrowserModule, AppRoutingModule, RouterModule, FormsModule],
+  declarations: [App, Inicio, Idioma, LoginAdministrador, LoginUsuario, CrearcuentaUsuario],
+  imports: [BrowserModule, AppRoutingModule, RouterModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
 })

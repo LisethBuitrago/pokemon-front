@@ -21,7 +21,7 @@ export class Idioma {
     console.log("Idioma elegido:", idioma);
 
     setTimeout(() => {
-      this.router.navigate(['/siguiente']);
+      this.router.navigate(['/login-usuario']);
     }, 800);
   }
 }
