@@ -5,8 +5,8 @@
       <h3 class="menu-title">ADMIN</h3>
       <ul>
         <li (click)="irAPokemon()"><span class="flecha">○</span> POKÉMON</li>
-        <li class="active" (click)="irAAtaques()"><span class="flecha">▶</span> ATAQUES</li>
-        <li (click)="irAObjetos()"><span class="flecha">○</span> OBJETOS</li>
+        <li (click)="irAAtaques()"><span class="flecha">○</span> ATAQUES</li>
+        <li class="active" (click)="irAObjetos()"><span class="flecha">▶</span> OBJETOS</li>
         <li (click)="irAEntrenadores()"><span class="flecha">○</span> JUGADORES</li>
       </ul>
       <button class="btn-logout-gba" (click)="cerrarSesion()">▶ SALIR</button>
@@ -14,31 +14,30 @@
 
     <section class="main-workspace">
       <div class="cuadro-dialogo header-box-gba">
-        <h2 class="titulo-seccion">GESTIÓN DE ATAQUES</h2>
+        <h2 class="titulo-seccion">GESTIÓN DE OBJETOS</h2>
         <div class="search-bar-gba">
           <span>🔍</span>
-          <input type="text" placeholder="Buscar ataque..." [(ngModel)]="textoBusqueda">
+          <input type="text" placeholder="Buscar objeto..." [(ngModel)]="textoBusqueda">
         </div>
       </div>
 
       <div class="cuadro-dialogo list-box-gba">
         <div class="retro-list-container">
           <ul class="retro-list">
-            <li *ngFor="let a of listaFiltrada"
-                [class.selected]="ataqueSeleccionado === a.id"
-                (click)="seleccionarAtaque(a.id)">
-              <span class="cursor">{{ ataqueSeleccionado === a.id ? '▶' : '○' }}</span>
-              <span class="col-id">{{ a.id }}</span>
-              <span class="col-name">{{ a.nombre }}</span>
-              <span class="col-type">[{{ a.tipo }}]</span>
-              <span class="col-stats">{{ a.stats }}</span>
+            <li *ngFor="let obj of listaFiltrada"
+                [class.selected]="objetoSeleccionado === obj.id"
+                (click)="seleccionarObjeto(obj.id)">
+              <span class="cursor">{{ objetoSeleccionado === obj.id ? '▶' : '○' }}</span>
+              <span class="col-id">{{ obj.id }}</span>
+              <span class="col-name">{{ obj.nombre }}</span>
+              <span class="col-type" *ngFor="let cat of obj.categorias">[{{ cat }}]</span>
             </li>
           </ul>
         </div>
 
         <div class="footer-actions">
-          <button class="btn-gba">
-            <span class="flecha">▶</span> EDITAR ATAQUE
+          <button class="btn-gba" (click)="aceptar()">
+            <span class="flecha">▶</span> EDITAR OBJETO
           </button>
         </div>
       </div>

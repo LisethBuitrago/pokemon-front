@@ -1,45 +1,41 @@
-<div class="pantalla-fondo">
-  <div class="gameboy-frame">
-    <div class="gameboy-screen admin-screen">
+<div class="gameboy-screen">
+  <div class="cuadro-dialogo login-box">
+    <h2 class="titulo-pokemon">ACCESO<br>ADMINISTRADOR</h2>
 
-      <div class="admin-header">
-        <span> ACCESO ADMINISTRADOR</span>
-        <span><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" class="mini-icon"> WebAdmin v1.0</span>
-      </div>
-
-      <div class="login-wrapper">
-        <img [src]="pikachuImg" class="sprite-decorativo pika" alt="Pikachu">
-
-        <div class="login-box">
-          <h2 class="login-title">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png" class="icon-title">
-            INGRESE SUS CREDENCIALES 🔑
-          </h2>
-
-          <div class="input-group">
-            <label>👤 Nombre de Usuario:</label>
-            <input type="text" [(ngModel)]="usuario" placeholder="[ Escriba su usuario ]">
-          </div>
-
-          <div class="input-group">
-            <label>🔒 Contraseña:</label>
-            <input type="password" [(ngModel)]="contrasena" placeholder="[ Escriba su contraseña ]">
-          </div>
-
-          <p class="error-msg" *ngIf="errorLogin">❌ Usuario o contraseña incorrectos.</p>
-
-          <button class="btn-login" (click)="iniciarSesion()">[ INICIAR SESIÓN ]</button>
+    <div class="formulario">
+      <div class="fila-formulario">
+        <div class="etiqueta-con-icono">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="pokeball" class="icono-gba">
+          <label>USUARIO</label>
         </div>
-
-        <img [src]="charmanderImg" class="sprite-decorativo char" alt="Charmander">
+        <input type="text" class="input-gba" [(ngModel)]="usuario" placeholder="Admin Name">
       </div>
 
-      <div class="start-bar-admin">
-        <img *ngFor="let pb of pokeballs" [src]="pb" class="pokeball-icon">
+      <div class="fila-formulario">
+        <div class="etiqueta-con-icono-key">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-electric.png" alt="llave" class="icono-key">
+          <label>CLAVE</label>
+        </div>
+        <input type="password" class="input-gba" [(ngModel)]="contrasena" placeholder="******">
       </div>
 
+      <p class="error-msg" *ngIf="errorLogin">❌ Credenciales incorrectas</p>
+
+      <div class="contenedor-entrar">
+        <button class="btn-gba" (click)="iniciarSesion()">
+          <span class="flecha">▶</span> ENTRAR
+        </button>
+      </div>
     </div>
   </div>
+
+  <div class="cuadro-dialogo footer-box">
+    <div class="pokeballs-container">
+      <img *ngFor="let pb of pokeballs" [src]="pb" class="mini-pokeball">
+    </div>
+    <p class="version-text">WebAdmin v1.0</p>
+  </div>
+
 </div>
 
-<div [class.cortina-negra]="estaCargando"></div>
+<div [class.cortina-negra]="estaCargando" [class.visible]="estaCargando"></div>

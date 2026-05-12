@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 export class AdminAtaques {
   private router = inject(Router);
 
-  // Ataque resaltado con el cursor ▶
-  ataqueSeleccionado: string = 'A-005';
+  textoBusqueda: string = '';
+  ataqueSeleccionado: string = 'A-002'; // Lanzallamas por defecto
 
   // Datos de prueba para la tabla de movimientos
   listaAtaques = [
@@ -24,17 +24,24 @@ export class AdminAtaques {
     { id: 'A-007', nombre: 'RAYO HIELO', tipo: 'HIELO', stats: '90p/100%/10pp' },
   ];
 
+  get listaFiltrada() {
+    return this.listaAtaques.filter(a =>
+      a.nombre.toLowerCase().includes(this.textoBusqueda.toLowerCase()) ||
+      a.id.includes(this.textoBusqueda)
+    );
+  }
+
   seleccionarAtaque(id: string) {
     this.ataqueSeleccionado = id;
   }
 
-  // Navegación del menú lateral
+  // NAVEGACIÓN UNIFICADA
   irAPokemon() { this.router.navigate(['/admin-pokemon']); }
+  irAAtaques() { this.router.navigate(['/admin-ataques']); }
+  irAObjetos() { this.router.navigate(['/admin-objetos']); }
+  irAEntrenadores() { this.router.navigate(['/admin-entrenadores']); }
 
-  cerrarSesion() { this.router.navigate(['/login-administrador']); }
-
-  aceptar() {
-    alert(`Gestionando ataque: ${this.ataqueSeleccionado}`);
-    // Aquí podrías ir a una pantalla de edición de ataque si la necesitas
+  cerrarSesion() {
+    this.router.navigate(['/login-administrador']);
   }
 }

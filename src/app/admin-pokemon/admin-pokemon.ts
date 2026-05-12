@@ -3,17 +3,17 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-pokemon',
-  standalone: false,
+  standalone: false, // <-- IMPORTANTE
   templateUrl: './admin-pokemon.html',
-  styleUrl: './admin-pokemon.css'
+  styleUrl: './admin-pokemon.css',
+  // ELIMINAMOS la línea de imports de aquí
 })
 export class AdminPokemon {
   private router = inject(Router);
 
-  // El Pokémon que está apuntado con la flechita ▶
+  textoBusqueda: string = '';
   pokemonSeleccionado: string = '037';
 
-  // Datos quemados para simular la base de datos
   listaPokemon = [
     { id: '032', genero: '♀', nombre: 'NIDORAN', tipos: ['VENENO'], activo: true },
     { id: '033', genero: '♂', nombre: 'NIDORINO', tipos: ['VENENO', 'TIERRA'], activo: true },
@@ -24,29 +24,31 @@ export class AdminPokemon {
     { id: '039', genero: '  ', nombre: 'RONDOUDOU', tipos: ['NORMAL'], activo: true },
   ];
 
+  get listaFiltrada() {
+    return this.listaPokemon.filter(
+      (p) =>
+        p.nombre.toLowerCase().includes(this.textoBusqueda.toLowerCase()) ||
+        p.id.includes(this.textoBusqueda),
+    );
+  }
+
   seleccionarPokemon(id: string) {
     this.pokemonSeleccionado = id;
   }
 
-  cerrarSesion() {
-    // Sonido de salida y redirección al login
-    let audio = new Audio('botones.mp3');
-    audio.play().catch(e => console.log('Audio error'));
-    this.router.navigate(['/login-administrador']);
-  }
+  irAPokemon() { this.router.navigate(['/admin-pokemon']); }
+  irAAtaques() { this.router.navigate(['/admin-ataques']); }
+  irAObjetos() { this.router.navigate(['/admin-objetos']); }
+  irAEntrenadores() { this.router.navigate(['/admin-entrenadores']); }
 
   irADetalles() {
-    // Aquí luego programaremos la redirección a la pantalla de edición
-    console.log("Editando al Pokémon ID:", this.pokemonSeleccionado);
-    alert(`Redirigiendo a detalles del Pokémon N°${this.pokemonSeleccionado}`);
-  }
-  // Dentro de la clase AdminPokemon
-  irAAtaques() {
-    console.log("Navegando a ataques...");
-    this.router.navigate(['/admin-ataques']);
+    console.log('Editando al Pokémon ID:', this.pokemonSeleccionado);
+    this.router.navigate(['/admin-pokemon-detalle']);
   }
 
-  irAPokemon() {
-    this.router.navigate(['/admin-pokemon']);
+  cerrarSesion() {
+    let audio = new Audio('botones.mp3');
+    audio.play().catch((e) => console.log('Audio error'));
+    this.router.navigate(['/login-administrador']);
   }
 }
