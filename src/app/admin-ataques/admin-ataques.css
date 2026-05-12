@@ -1,0 +1,47 @@
+/* Reutilizamos la base del layout anterior */
+.admin-layout { height: 100vh; display: flex; flex-direction: column; background-color: #dce0d9; }
+.admin-header { background: #fff; display: flex; justify-content: space-between; padding: 10px 20px; border-bottom: 3px solid #b5b5b5; }
+.admin-body { display: flex; flex: 1; overflow: hidden; }
+.sidebar { width: 250px; background: #f8f6e8; border-right: 3px solid #b5b5b5; }
+.sidebar li { padding: 15px 20px; font-weight: bold; border-bottom: 1px solid #e0ddc7; cursor: pointer; }
+.sidebar li.active { background-color: #ffe699; border-left: 5px solid #ffaa00; }
+
+.workspace { flex: 1; background-color: #f3edd3; padding: 20px 40px; display: flex; flex-direction: column; gap: 15px; }
+.workspace-header { display: flex; justify-content: space-between; align-items: center; text-align: center; }
+
+.search-bar { background: #fff; border: 1px solid #aaa; border-radius: 5px; padding: 8px; width: 60%; margin: 0 auto; display: flex; }
+.search-bar input { border: none; outline: none; flex: 1; margin-left: 10px; }
+
+/* Tabla Retro */
+.retro-list-container {
+  background-color: #dfc896;
+  border: 4px solid #998357;
+  border-radius: 8px;
+  height: 320px;
+  overflow-y: auto;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.retro-list { list-style: none; padding: 10px; margin: 0; }
+.retro-list li { display: flex; align-items: center; padding: 12px; font-size: 0.75rem; cursor: pointer; border-bottom: 1px solid rgba(153, 131, 87, 0.3); }
+.retro-list li.selected { background-color: rgba(0,0,0,0.05); }
+
+.cursor { width: 30px; }
+.col-id { width: 80px; }
+.col-sep { margin-right: 15px; color: #998357; }
+.col-name { width: 180px; }
+.col-details { flex: 1; display: flex; gap: 15px; }
+.type-tag { color: #555; }
+.stats-tag { color: #222; font-size: 0.65rem; }
+
+.action-section { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 10px; }
+.btn-accept {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #dfc896; /* Beige para que no destaque tanto como el de pokemon si prefieres */
+  border: 3px solid #998357;
+  padding: 15px 30px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #998357;
+}
+
+.sprite-decorativo { width: 50px; image-rendering: pixelated; }

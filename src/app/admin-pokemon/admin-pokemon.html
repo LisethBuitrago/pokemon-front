@@ -1,0 +1,87 @@
+<div class="admin-layout">
+
+  <header class="admin-header">
+    <div class="title-section">
+      <span class="shield-icon"></span>
+      <h1> PANEL DE ADMINISTRACIÓN</h1>
+    </div>
+    <div class="user-section">
+      <span>Bienvenido, Admin 👤</span>
+      <button class="btn-logout" (click)="cerrarSesion()">🚪 Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+
+    <aside class="sidebar">
+      <ul>
+        <li class="active">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" class="menu-icon">
+          Gestión de Pokémon 🐾
+        </li>
+        <li (click)="irAAtaques()">⚔️ Gestión de Ataques</li>
+        <li>🎒 Gestión de Objetos</li>
+        <li>🧑‍🤝‍🧑 Control de Entrenadores</li>
+      </ul>
+      <div class="sidebar-footer">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png" class="pokeball-mini">
+      </div>
+    </aside>
+
+    <main class="workspace">
+
+      <div class="workspace-header">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png" class="sprite-decorativo left">
+        <div class="workspace-title">
+          <h2>Catálogo de Pokémon</h2>
+          <p>Aquí puedes administrar el catálogo de criaturas disponibles en el simulador.</p>
+        </div>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" class="sprite-decorativo right">
+      </div>
+
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" placeholder="[ Buscar por nombre o ID... ]">
+      </div>
+
+      <div class="retro-list-container">
+        <ul class="retro-list">
+          <li *ngFor="let p of listaPokemon"
+              [class.selected]="pokemonSeleccionado === p.id"
+              (click)="seleccionarPokemon(p.id)">
+
+            <span class="cursor">{{ pokemonSeleccionado === p.id ? '▶' : '○' }}</span>
+            <span class="col-id">N°{{ p.id }}</span>
+            <span class="col-gen">{{ p.genero }}</span>
+            <span class="col-name">{{ p.nombre }}</span>
+
+            <div class="col-types">
+              <span *ngFor="let t of p.tipos">[{{ t }}]</span>
+            </div>
+
+            <span class="radio-btn">○</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="list-footer">
+        <span>Mostrando 7 (scrollable) de 151 Pokémon registrados.</span>
+      </div>
+
+      <div class="action-section">
+        <div class="sprites-row">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png">
+        </div>
+
+        <button class="btn-accept" (click)="irADetalles()">[ ACEPTAR ]</button>
+
+        <div class="sprites-row">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png">
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>

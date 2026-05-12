@@ -1,0 +1,206 @@
+/* Base de tu código original adaptada */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.pantalla-fondo {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  background-color: #d2ceb6; /* Un color neutro por fuera del marco */
+}
+
+/* El marco exterior un poco más sutil que el naranja de la portada */
+.gameboy-frame {
+  background-color: #dce0d9;
+  width: 100%;
+  height: 100%;
+  padding: 15px 30px;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+}
+
+/* Pantalla beige retro */
+.gameboy-screen.admin-screen {
+  flex: 1;
+  background-color: #f3edd3; /* Beige pastel del mockup */
+  border: 4px solid #a8a8a8;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Press Start 2P', cursive, monospace;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barra superior */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-bottom: 2px solid #ccc;
+  font-size: 0.7rem;
+  color: #000;
+  font-family: Arial, sans-serif; /* Más limpia para la barra */
+  font-weight: bold;
+}
+
+.mini-icon {
+  width: 15px;
+  vertical-align: middle;
+}
+
+/* Envoltura del centro */
+.login-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Animaciones de Pokémon laterales */
+.sprite-decorativo {
+  position: absolute;
+  width: 70px;
+  image-rendering: pixelated;
+}
+.pika { left: 15%; }
+.char { right: 15%; transform: scaleX(-1); /* Voltear a Charmander */ }
+
+/* Caja de login (El "Pergamino" de GBA) */
+.login-box {
+  background-color: #dfc896; /* Color pergamino oscuro */
+  border: 4px solid #998357; /* Borde oscuro cartón */
+  border-radius: 5px;
+  padding: 30px;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+  width: 550px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+
+.login-title {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.icon-title {
+  width: 25px;
+  image-rendering: pixelated;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input-group label {
+  font-size: 0.8rem;
+}
+
+.input-group input {
+  font-family: 'Press Start 2P', cursive, monospace;
+  background-color: #f3edd3;
+  border: 2px solid #222;
+  padding: 15px;
+  font-size: 0.8rem;
+  outline: none;
+}
+
+.input-group input:focus {
+  background-color: #fff;
+  border-color: #e65c00;
+}
+
+.error-msg {
+  color: #d80000;
+  font-size: 0.7rem;
+  text-align: center;
+  margin: 0;
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.btn-login {
+  font-family: 'Press Start 2P', cursive, monospace;
+  background-color: #f3edd3;
+  border: 2px solid #222;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  transition: all 0.2s;
+  box-shadow: 3px 3px 0 #222;
+}
+
+.btn-login:hover {
+  background-color: #fff;
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #222;
+}
+
+/* Barra inferior de pokeballs */
+.start-bar-admin {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.pokeball-icon {
+  width: 35px;
+  height: 35px;
+  image-rendering: pixelated;
+}
+
+/* Media Queries para móviles */
+@media (max-width: 800px) {
+  .gameboy-frame { padding: 5px; }
+  .pika, .char { display: none; /* Ocultamos los decorativos en celular */ }
+  .login-box { padding: 15px; width: 95%; }
+  .login-title { font-size: 0.8rem; }
+  .input-group input { font-size: 0.6rem; padding: 10px; }
+  .btn-login { font-size: 0.7rem; }
+  .pokeball-icon { width: 25px; height: 25px; gap: 10px; }
+}
+
+/* Transición de pantalla negra (Tu código intacto) */
+.cortina-negra {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s ease-in-out;
+  z-index: 1000;
+}
+
+.cortina-negra.visible {
+  opacity: 1;
+  pointer-events: all;
+}

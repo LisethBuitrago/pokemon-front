@@ -1,0 +1,85 @@
+<div class="admin-layout">
+
+  <header class="admin-header">
+    <div class="title-section">
+      <span class="shield-icon">🛡️</span>
+      <h1>SIMULADOR POKÉMON - PANEL DE ADMINISTRACIÓN</h1>
+    </div>
+    <div class="user-section">
+      <span>Bienvenido, Admin 👤</span>
+      <button class="btn-logout" (click)="cerrarSesion()">🚪 Cerrar Sesión</button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+
+    <aside class="sidebar">
+      <ul>
+        <li (click)="irAPokemon()">Gestión de Pokémon</li>
+        <li class="active">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-electric.png" class="menu-icon">
+          Gestión de Ataques ⚔️
+        </li>
+        <li>🎒 Gestión de Objetos</li>
+        <li>🧑‍🤝‍🧑 Control de Entrenadores</li>
+      </ul>
+    </aside>
+
+    <main class="workspace">
+
+      <div class="workspace-header">
+        <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/nidoran-f.gif" class="sprite-decorativo">
+        <div class="workspace-title">
+          <h2>🟢 ÁREA DE TRABAJO: Catálogo de Ataques</h2>
+          <p>Aquí puedes administrar el catálogo de ataques y movimientos disponibles. Asegúrate de balancear el poder y la precisión para una experiencia de combate justa.</p>
+        </div>
+        <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/pikachu.gif" class="sprite-decorativo">
+      </div>
+
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" placeholder="[ Buscar por nombre o ID... ]">
+      </div>
+
+      <div class="retro-list-container">
+        <ul class="retro-list">
+          <li *ngFor="let a of listaAtaques"
+              [class.selected]="ataqueSeleccionado === a.id"
+              (click)="seleccionarAtaque(a.id)">
+
+            <span class="cursor">{{ ataqueSeleccionado === a.id ? '▶' : '○' }}</span>
+            <span class="col-id">{{ a.id }}</span>
+            <span class="col-sep">|</span>
+            <span class="col-name">{{ a.nombre }}</span>
+
+            <div class="col-details">
+              <span class="type-tag">[{{ a.tipo }}]</span>
+              <span class="stats-tag">[{{ a.stats }}]</span>
+            </div>
+
+            <span class="radio-btn">○</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="list-footer">
+        <span>Mostrando 7 (scrollable) de 350 ataques registrados.</span>
+      </div>
+
+      <div class="action-section">
+        <div class="sprites-row">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/ultra-ball.png">
+        </div>
+
+        <button class="btn-accept" (click)="aceptar()">📥 [ ACEPTAR ]</button>
+
+        <div class="sprites-row">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/master-ball.png">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/great-ball.png">
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>

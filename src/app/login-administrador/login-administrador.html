@@ -1,2 +1,45 @@
-<p>login-administrador works!</p>
-<h1>ohlaaa</h1>
+<div class="pantalla-fondo">
+  <div class="gameboy-frame">
+    <div class="gameboy-screen admin-screen">
+
+      <div class="admin-header">
+        <span> ACCESO ADMINISTRADOR</span>
+        <span><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" class="mini-icon"> WebAdmin v1.0</span>
+      </div>
+
+      <div class="login-wrapper">
+        <img [src]="pikachuImg" class="sprite-decorativo pika" alt="Pikachu">
+
+        <div class="login-box">
+          <h2 class="login-title">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/premier-ball.png" class="icon-title">
+            INGRESE SUS CREDENCIALES 🔑
+          </h2>
+
+          <div class="input-group">
+            <label>👤 Nombre de Usuario:</label>
+            <input type="text" [(ngModel)]="usuario" placeholder="[ Escriba su usuario ]">
+          </div>
+
+          <div class="input-group">
+            <label>🔒 Contraseña:</label>
+            <input type="password" [(ngModel)]="contrasena" placeholder="[ Escriba su contraseña ]">
+          </div>
+
+          <p class="error-msg" *ngIf="errorLogin">❌ Usuario o contraseña incorrectos.</p>
+
+          <button class="btn-login" (click)="iniciarSesion()">[ INICIAR SESIÓN ]</button>
+        </div>
+
+        <img [src]="charmanderImg" class="sprite-decorativo char" alt="Charmander">
+      </div>
+
+      <div class="start-bar-admin">
+        <img *ngFor="let pb of pokeballs" [src]="pb" class="pokeball-icon">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div [class.cortina-negra]="estaCargando"></div>
