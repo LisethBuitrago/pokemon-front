@@ -7,9 +7,11 @@ import { Inicio } from './inicio/inicio';
 import { Idioma } from './idioma/idioma';
 import { RouterModule } from '@angular/router';
 import { LoginAdministrador } from './login-administrador/login-administrador';
+import { LoginUsuario } from './login-usuario/login-usuario';
+import { CrearcuentaUsuario } from './crearcuenta-usuario/crearcuenta-usuario';
 
 @NgModule({
-  declarations: [App, Inicio, Idioma, LoginAdministrador],
+  declarations: [App, Inicio, Idioma, LoginAdministrador, LoginUsuario, CrearcuentaUsuario],
   imports: [BrowserModule, AppRoutingModule, RouterModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
