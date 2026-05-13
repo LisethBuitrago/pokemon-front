@@ -9,9 +9,18 @@ import { RouterModule } from '@angular/router';
 import { LoginAdministrador } from './login-administrador/login-administrador';
 import { LoginUsuario } from './login-usuario/login-usuario';
 import { CrearcuentaUsuario } from './crearcuenta-usuario/crearcuenta-usuario';
+import { MapaPrincipal } from './mapa-principal/mapa-principal';
 
 @NgModule({
-  declarations: [App, Inicio, Idioma, LoginAdministrador, LoginUsuario, CrearcuentaUsuario],
+  declarations: [
+    App,
+    Inicio,
+    Idioma,
+    LoginAdministrador,
+    LoginUsuario,
+    CrearcuentaUsuario,
+    MapaPrincipal,
+  ],
   imports: [BrowserModule, AppRoutingModule, RouterModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],

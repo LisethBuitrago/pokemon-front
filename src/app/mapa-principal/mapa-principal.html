@@ -1,0 +1,11 @@
+<div class="pantalla-gba">
+
+  <div class="mundo" [style.transform]="'translate(' + -camaraX + 'px, ' + -camaraY + 'px)'">
+    <img src="mapa-pueblo.png" class="imagen-mapa">
+  </div>
+
+  <div class="personaje" [style.left.px]="spriteX" [style.top.px]="spriteY">
+    <img [src]="spriteActual" alt="Jugador">
+  </div>
+
+</div>

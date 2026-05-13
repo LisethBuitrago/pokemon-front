@@ -5,6 +5,7 @@ import { Inicio } from './inicio/inicio';
 import { LoginAdministrador } from './login-administrador/login-administrador';
 import {LoginUsuario} from './login-usuario/login-usuario';
 import {CrearcuentaUsuario} from './crearcuenta-usuario/crearcuenta-usuario';
+import { MapaPrincipal } from './mapa-principal/mapa-principal';
 
 const routes: Routes = [
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'login-administrador', component: LoginAdministrador },
   {path: 'login-usuario', component: LoginUsuario},
   {path: 'crearcuenta-usuario', component: CrearcuentaUsuario},
+  {path: 'mapa-principal', component: MapaPrincipal},
   { path: '**', redirectTo: '' },  //esta linea siempre debe ir a lo ultimo att:lis
 ];
 
