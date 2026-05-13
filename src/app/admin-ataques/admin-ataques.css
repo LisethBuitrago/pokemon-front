@@ -1,0 +1,135 @@
+
+.gameboy-screen {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #2b74ba;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+}
+
+.gameboy-screen::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('/fondologinusuario.jpg');
+  background-repeat: repeat;
+  opacity: 0.15;
+}
+.cuadro-dialogo {
+  position: relative;
+  background-color: #f3edd3;
+  border: 4px solid #202020;
+  outline: 10px solid #58aed9;
+  padding: 15px;
+  width: 853px;
+  box-shadow: inset 0 0 0 2px #202020;
+  z-index: 10;
+}
+
+.seccion-fuera-extrema-derecha {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+}
+
+.bulba-btn-grande {
+  width: 110px;
+  margin-bottom: 10px;
+  image-rendering: pixelated;
+}
+
+.btn-exit-retro-final {
+  background: #e2d9b5;
+  border: 3px solid #202020;
+  padding: 10px 15px;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sprite-panel {
+  position: absolute;
+  width: 70px;
+  image-rendering: pixelated;
+  top: 10px;
+}
+.pika-in { left: 20px; }
+.char-in { right: 20px; transform: scaleX(-1); }
+
+.header-admin-title {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #202020;
+}
+
+.nav-menu-horizontal {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.menu-item { font-size: 11px; color: #202020; cursor: pointer; }
+.selector { margin-right: 8px; color: #2b74ba; }
+.menu-item.active { font-weight: bold; }
+.menu-item.active .selector { color: #d13030; }
+
+.search-container-gba {
+  display: flex;
+  border: 3px solid #202020;
+  margin: 0 40px 10px 40px;
+  background-color: #ffffff;
+}
+
+.search-icon-box { background: white; padding: 8px; border-right: 3px solid #202020; }
+.input-retro { flex: 1; border: none; padding: 10px; font-family: inherit; outline: none; background: transparent; }
+
+.visor-contenido {
+  height: 300px;
+  overflow-y: auto;
+  background-color: #fbf8eb;
+  border: 6px solid #58aed9;
+  border-radius: 8px;
+  margin: 0 40px;
+}
+
+.pixel-list { list-style: none; padding: 0; margin: 0; }
+.pixel-list li { display: flex; align-items: center; padding: 12px 20px; border-bottom: 2px solid #eee; font-size: 14px; }
+.pixel-list li.selected { background-color: #e2d9b5; }
+
+.p-id { width: 70px; color: #666; font-size: 12px; }
+.p-name { flex: 1; font-weight: bold; }
+.type-tag { font-size: 10px; color: #2b74ba; margin-right: 15px; }
+.stats-tag { font-size: 10px; color: #555; }
+
+.footer-gba-actions-final {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #e2d9b5;
+  border: 3px solid #202020;
+  padding: 8px 25px;
+  border-radius: 8px;
+}
+
+.btn-action-gba { background: none; border: none; font-family: inherit; font-size: 16px; cursor: pointer; }
+.pokebola-btn { width: 30px; image-rendering: pixelated; }

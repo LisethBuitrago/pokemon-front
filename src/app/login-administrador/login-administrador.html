@@ -1,2 +1,44 @@
-<p>login-administrador works!</p>
-<h1>ohlaaa</h1>
+<div class="gameboy-screen">
+  <div class="cuadro-dialogo login-box">
+    <h2 class="titulo-pokemon">ACCESO<br>ADMINISTRADOR</h2>
+
+    <div class="formulario">
+      <div class="fila-formulario">
+        <div class="etiqueta-con-icono">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="pokeball" class="icono-gba">
+          <label>USUARIO</label>
+        </div>
+        <input type="text" class="input-gba" [(ngModel)]="usuario" placeholder="Name">
+      </div>
+
+      <div class="fila-formulario">
+        <div class="etiqueta-con-icono-key">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/tm-electric.png" alt="llave" class="icono-key">
+          <label>CONTRASEÑA</label>
+        </div>
+        <input type="password" class="input-gba" [(ngModel)]="contrasena" placeholder="******">
+      </div>
+
+      <p class="error-msg" *ngIf="errorLogin">❌ Credenciales incorrectas</p>
+
+      <div class="contenedor-botones-login">
+        <button class="btn-gba" (click)="volverInicio()">
+          <span class="flecha">◀</span> VOLVER
+        </button>
+
+        <button class="btn-gba" (click)="iniciarSesion()">
+          <span class="flecha">▶</span> ENTRAR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cuadro-dialogo footer-box">
+    <div class="pokeballs-container">
+      <img *ngFor="let pb of pokeballs" [src]="pb" class="mini-pokeball">
+    </div>
+    <p class="version-text">WebAdmin v1.0</p>
+  </div>
+</div>
+
+<div [class.cortina-negra]="estaCargando" [class.visible]="estaCargando"></div>
