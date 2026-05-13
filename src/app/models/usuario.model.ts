@@ -1,6 +1,6 @@
 export interface UsuarioModel {
   id: number;
-  username: string;
+  nombre: string;
   contrasenia: string;
   correo: string;
   rol: string;
