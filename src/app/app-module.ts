@@ -10,6 +10,12 @@ import { LoginAdministrador } from './login-administrador/login-administrador';
 import { LoginUsuario } from './login-usuario/login-usuario';
 import { CrearcuentaUsuario } from './crearcuenta-usuario/crearcuenta-usuario';
 import { MapaPrincipal } from './mapa-principal/mapa-principal';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminPokemon } from './admin-pokemon/admin-pokemon';
+import { AdminAtaques } from './admin-ataques/admin-ataques';
+import { AdminObjetos } from './admin-objetos/admin-objetos';
+import { AdminEntrenadores } from './admin-entrenadores/admin-entrenadores';
 
 @NgModule({
   declarations: [
@@ -20,8 +26,12 @@ import { MapaPrincipal } from './mapa-principal/mapa-principal';
     LoginUsuario,
     CrearcuentaUsuario,
     MapaPrincipal,
+    AdminPokemon,
+    AdminAtaques,
+    AdminObjetos,
+    AdminEntrenadores
   ],
-  imports: [BrowserModule, AppRoutingModule, RouterModule],
+  imports: [BrowserModule, AppRoutingModule, RouterModule, FormsModule, HttpClientModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
 })
