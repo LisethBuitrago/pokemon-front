@@ -1,0 +1,60 @@
+<div class="gameboy-screen">
+  <div class="cuadro-dialogo main-box">
+    <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/pikachu.gif" class="sprite-panel pika-in">
+    <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif" class="sprite-panel char-in">
+
+    <div class="header-admin-title">
+      <span class="title-text">CONTROL DE JUGADORES - PANEL DE ADMIN</span>
+    </div>
+
+    <nav class="nav-menu-horizontal">
+      <div class="menu-item" (click)="irAPokemon()">
+        <span class="selector">○</span> POKÉMON
+      </div>
+      <div class="menu-item" (click)="irAAtaques()">
+        <span class="selector">○</span> ATAQUES
+      </div>
+      <div class="menu-item" (click)="irAObjetos()">
+        <span class="selector">○</span> OBJETOS
+      </div>
+      <div class="menu-item active" (click)="irAEntrenadores()">
+        <span class="selector">▶</span> JUGADORES
+      </div>
+    </nav>
+
+    <div class="search-container-gba">
+      <div class="search-icon-box">🔍</div>
+      <input type="text" [(ngModel)]="textoBusqueda" placeholder="Buscar entrenador..." class="input-retro">
+    </div>
+
+    <div class="visor-contenido">
+      <ul class="pixel-list">
+        <li *ngFor="let e of listaFiltrada"
+            [class.selected]="entrenadorSeleccionado === e.id"
+            (click)="seleccionarEntrenador(e.id)">
+          <span class="p-id">#{{ e.id }}</span>
+          <span class="p-name">{{ e.nombre | uppercase }}</span>
+          <div class="p-types">
+            <span class="type-tag">[{{ e.rango | uppercase }}]</span>
+            <span class="region-tag">{{ e.region | uppercase }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-gba-actions-final">
+      <div class="btn-wrap">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" class="pokebola-btn">
+        <button class="btn-action-gba" (click)="aceptar()">[ VER PERFIL ]</button>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" class="pokebola-btn">
+      </div>
+    </div>
+  </div>
+
+  <div class="seccion-fuera-extrema-derecha">
+    <img src="https://img.pokemondb.net/sprites/black-white/anim/normal/bulbasaur.gif" class="bulba-btn-grande">
+    <button class="btn-exit-retro-final" (click)="cerrarSesion()">
+      ▶ CERRAR SESIÓN
+    </button>
+  </div>
+</div>
