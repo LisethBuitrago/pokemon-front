@@ -22,7 +22,7 @@ export class CrearCuentaUsuario {
 
     setTimeout(() => {
       if (opcion === 'registrar') {
-        this.router.navigate(['/siguiente']);
+        this.router.navigate(['/login-usuario']);
       }
       else if (opcion === 'login') {
         this.router.navigate(['/login-usuario']);
