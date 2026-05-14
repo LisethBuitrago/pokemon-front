@@ -10,6 +10,8 @@ import { AdminAtaques } from './admin-ataques/admin-ataques';
 import { AdminEntrenadores } from './admin-entrenadores/admin-entrenadores';
 import { AdminPokemon } from './admin-pokemon/admin-pokemon';
 import { CrearCuentaUsuario } from './crearcuenta-usuario/crearcuenta-usuario';
+import { CajaDialogo } from './caja-dialogo/caja-dialogo';
+import { ProfesorOakPresentacion } from './profesor-oak-presentacion/profesor-oak-presentacion';
 
 const routes: Routes = [
 
@@ -24,9 +26,12 @@ const routes: Routes = [
   { path: 'admin-entrenadores', component: AdminEntrenadores },
   { path: 'admin-ataques', component: AdminAtaques },
   { path: 'admin-objetos', component: AdminObjetos },
-  { path: '**', redirectTo: '' },
+  {path: 'caja-dialogo', component: CajaDialogo},
+  {path: 'profesor-oak-presentacion', component: ProfesorOakPresentacion},
+  { path: '**', redirectTo: '' }, //esta linea siempre va a lo ultimo att:lis
 ];
 
+// @ts-ignore
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

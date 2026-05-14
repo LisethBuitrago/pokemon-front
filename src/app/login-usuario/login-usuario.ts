@@ -21,7 +21,7 @@ export class LoginUsuario {
     console.log("Opción elegida:", opcion);
     setTimeout(() => {
       if (opcion === 'entrar') {
-        this.router.navigate(['/siguiente']);
+        this.router.navigate(['/profesor-oak-presentacion']);
       }
       else if (opcion === 'registrarse') {
         this.router.navigate(['/crearcuenta-usuario']);
