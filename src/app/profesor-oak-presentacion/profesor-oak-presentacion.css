@@ -1,0 +1,96 @@
+
+.pantalla-azul {
+  background: radial-gradient(circle, rgba(120,220,255,1) 0%, rgba(56,176,248,1) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  margin: 0;
+  padding: 5vh 0;
+}
+
+
+
+.escena-oak {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 20px;
+  width: 100%;
+   height: 400px;
+
+}
+
+.sprite-oak {
+  width: 290px;
+  max-width: 90vw;
+  height: auto;
+  z-index: 2;
+  position: relative;
+}
+
+.sprite-enemigo {
+  width: 250px;
+  max-width: 90vw;
+  height: auto;
+  z-index: 2;
+  position: relative;
+
+
+}
+
+.plataforma {
+  position: absolute;
+  bottom: -15px;
+  width: 450px;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  z-index: 1;
+
+  box-shadow:
+    0 0 30px rgba(255, 255, 255, 0.8),
+    inset 0 0 15px rgba(255, 255, 255, 0.5);
+  animation: pulso-plataforma 4s infinite ease-in-out;
+}
+
+@keyframes pulso-plataforma {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.03); }
+}
+
+.caja-ancha-verde ::ng-deep .cuadro-retro {
+  width: 95% !important;
+  max-width: 900px !important;
+  min-height: 100px;
+  margin-bottom: 20px !important;
+  margin-top: 0 !important;
+}
+
+.texto-suave {
+  animation: aparecer-suave 1.5s ease-in-out forwards;
+}
+
+@keyframes aparecer-suave {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fondo-enemigo {
+  background: radial-gradient(circle, rgba(100,100,120,1) 0%, rgba(30,30,50,1) 100%) !important;
+  transition: background 2s ease;
+}
+
+.sprite-oak.texto-suave {
+  animation: aparecer-suave 2s ease-in-out forwards;
+}

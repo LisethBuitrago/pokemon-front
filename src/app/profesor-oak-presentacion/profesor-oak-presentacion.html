@@ -1,0 +1,25 @@
+<div class="pantalla-azul">
+
+  <div class="escena-oak">
+    <div class="plataforma"></div>
+    <img *ngIf="personajeVisible === 'oak'" [src]="profesor" alt="Profesor Oak" class="sprite-oak texto-suave">
+    <img *ngIf="personajeVisible === 'enemigo'" [src]="enemigo" alt="Enemigo" class="sprite-enemigo texto-suave">
+  </div>
+
+  <app-caja-dialogo class="caja-ancha-verde">
+
+    <p *ngIf="mensajeActual === 1" class="texto-suave">¡Hola! ¡Bienvenido al mundo de POKÉMON!</p>
+    <p *ngIf="mensajeActual === 2" class="texto-suave">Me llamo OAK, pero la gente me llama el PROFESOR POKÉMON.</p>
+    <p *ngIf="mensajeActual === 3"class="texto-suave">Este mundo esta habitado por unas criaturas llamadas POKÉMON.</p>
+    <p *ngIf="mensajeActual === 4"class="texto-suave">Para algunos los POKÉMON son mascotas.Pero otros los usan para pelear</p>
+    <p *ngIf="mensajeActual === 5"class="texto-suave">En cuanto a mi...</p>
+    <p *ngIf="mensajeActual === 6"class="texto-suave">Estudio a los POKÉMON como profesión</p>
+    <p *ngIf="mensajeActual === 7"class="texto-suave">A continuación te presentare a mi nieto Andre.</p>
+    <p *ngIf="mensajeActual === 8"class="texto-suave">Ha sido tu rival desde que eran pequeños</p>
+
+
+
+
+  </app-caja-dialogo>
+
+</div>
