@@ -8,7 +8,7 @@ import { Idioma } from './idioma/idioma';
 import { RouterModule } from '@angular/router';
 import { LoginAdministrador } from './login-administrador/login-administrador';
 import { LoginUsuario } from './login-usuario/login-usuario';
-import { CrearcuentaUsuario } from './crearcuenta-usuario/crearcuenta-usuario';
+import { CrearCuentaUsuario } from './crearcuenta-usuario/crearcuenta-usuario';
 import { MapaPrincipal } from './mapa-principal/mapa-principal';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,7 +24,7 @@ import { AdminEntrenadores } from './admin-entrenadores/admin-entrenadores';
     Idioma,
     LoginAdministrador,
     LoginUsuario,
-    CrearcuentaUsuario,
+    CrearCuentaUsuario,
     MapaPrincipal,
     AdminPokemon,
     AdminAtaques,
