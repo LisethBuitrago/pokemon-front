@@ -1,11 +1,24 @@
 <div class="pantalla-gba">
 
   <div class="mundo" [style.transform]="'translate(' + -camaraX + 'px, ' + -camaraY + 'px)'">
-    <img src="mapa-pueblo.png" class="imagen-mapa">
+
+    <img src="/mapa-pueblo.png" class="imagen-mapa">
+
+    <div class="debug-grid">
+      <div *ngFor="let fila of colisiones" class="debug-fila">
+        <div *ngFor="let celda of fila"
+             class="debug-celda"
+             [ngClass]="{'pared': celda === 1, 'puerta': celda === 3}">
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="personaje" [style.left.px]="spriteX" [style.top.px]="spriteY">
     <img [src]="spriteActual" alt="Jugador">
   </div>
 
+  <div class="telon-negro" [class.activo]="transicionActiva">
+    <div class="mensaje-transicion" *ngIf="transicionActiva">Entrando...</div>
+  </div>
 </div>
