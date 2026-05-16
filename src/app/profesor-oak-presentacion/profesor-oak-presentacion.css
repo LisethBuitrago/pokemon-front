@@ -94,3 +94,56 @@
 .sprite-oak.texto-suave {
   animation: aparecer-suave 2s ease-in-out forwards;
 }
+
+
+
+.sprite-jugador {
+  width: 240px;
+  max-width: 90vw;
+  height: auto;
+  z-index: 2;
+  position: relative;
+}
+
+.contenedor-pregunta {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.opciones-genero {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.opcion {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  color: #202020;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.puntero {
+  color: transparent;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.opcion:hover .puntero {
+  color: #d62828;
+  animation: mover-puntero 0.5s infinite alternate;
+}
+
+@keyframes mover-puntero {
+  from { transform: translateX(0); }
+  to { transform: translateX(3px); }
+}
+
+.jugador-hombre {
+  width: 300px;
+}

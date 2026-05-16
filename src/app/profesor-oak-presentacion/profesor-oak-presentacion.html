@@ -4,22 +4,33 @@
     <div class="plataforma"></div>
     <img *ngIf="personajeVisible === 'oak'" [src]="profesor" alt="Profesor Oak" class="sprite-oak texto-suave">
     <img *ngIf="personajeVisible === 'enemigo'" [src]="enemigo" alt="Enemigo" class="sprite-enemigo texto-suave">
+    <img *ngIf="personajeVisible === 'hombre'" [src]="personajeHombre" alt="Jugador Chico" class="sprite-jugador texto-suave jugador-hombre">
+    <img *ngIf="personajeVisible === 'mujer'" [src]="personajeMujer" alt="Jugadora Chica" class="sprite-jugador texto-suave">
   </div>
 
   <app-caja-dialogo class="caja-ancha-verde">
-
     <p *ngIf="mensajeActual === 1" class="texto-suave">¡Hola! ¡Bienvenido al mundo de POKÉMON!</p>
     <p *ngIf="mensajeActual === 2" class="texto-suave">Me llamo OAK, pero la gente me llama el PROFESOR POKÉMON.</p>
-    <p *ngIf="mensajeActual === 3"class="texto-suave">Este mundo esta habitado por unas criaturas llamadas POKÉMON.</p>
-    <p *ngIf="mensajeActual === 4"class="texto-suave">Para algunos los POKÉMON son mascotas.Pero otros los usan para pelear</p>
-    <p *ngIf="mensajeActual === 5"class="texto-suave">En cuanto a mi...</p>
-    <p *ngIf="mensajeActual === 6"class="texto-suave">Estudio a los POKÉMON como profesión</p>
-    <p *ngIf="mensajeActual === 7"class="texto-suave">A continuación te presentare a mi nieto Andre.</p>
-    <p *ngIf="mensajeActual === 8"class="texto-suave">Ha sido tu rival desde que eran pequeños</p>
 
+    <div *ngIf="mensajeActual === 3" class="contenedor-pregunta">
+      <p class="texto-suave">¡Cuéntame sobre ti! ¿Eres un chico o una chica?</p>
+      <div class="opciones-genero">
+        <div class="opcion" (click)="elegirPersonaje('hombre')">
+          <span class="puntero">▶</span> CHICO
+        </div>
+        <div class="opcion" (click)="elegirPersonaje('mujer')">
+          <span class="puntero">▶</span> CHICA
+        </div>
+      </div>
+    </div>
 
+    <p *ngIf="mensajeActual === 4" class="texto-suave">¡Qué bien! Buena elección de tu personaje, pero volviendo al mundo de POKÉMON...</p>
 
-
+    <p *ngIf="mensajeActual === 5" class="texto-suave">Este mundo esta habitado por unas criaturas llamadas POKÉMON.</p>
+    <p *ngIf="mensajeActual === 6" class="texto-suave">Para algunos los POKÉMON son mascotas. Pero otros los usan para pelear.</p>
+    <p *ngIf="mensajeActual === 7" class="texto-suave">En cuanto a mi... Estudio a los POKÉMON como profesión.</p>
+    <p *ngIf="mensajeActual === 8" class="texto-suave">A continuación te presentare a mi nieto Andre.</p>
+    <p *ngIf="mensajeActual === 9" class="texto-suave">¡Tu propia leyenda POKÉMON está a punto de comenzar!</p>
   </app-caja-dialogo>
 
 </div>
