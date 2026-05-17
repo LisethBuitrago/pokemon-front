@@ -10,7 +10,7 @@ export class CombateService {
   private readonly urlbase: string = 'http://localhost:8080/combate';
 
   /**
-   * Registra un nuevo combate enviando el objeto CombateDTO en el cuerpo.
+   * Registra un nuevo pokemon enviando el objeto CombateDTO en el cuerpo.
    * Basado en: @PostMapping("/registrar")
    */
   registrarCombate(datosCombate: CombateModel) {
