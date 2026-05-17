@@ -1,24 +1,58 @@
 <div class="pantalla-gba">
-
   <div class="mundo" [style.transform]="'translate(' + -camaraX + 'px, ' + -camaraY + 'px)'">
-
     <img src="/mapa-pueblo.png" class="imagen-mapa">
-
-    <div class="debug-grid">
-      <div *ngFor="let fila of colisiones" class="debug-fila">
-        <div *ngFor="let celda of fila"
-             class="debug-celda"
-             [ngClass]="{'pared': celda === 1, 'puerta': celda === 3}">
-        </div>
-      </div>
-    </div>
   </div>
 
-  <div class="personaje" [style.left.px]="spriteX" [style.top.px]="spriteY">
-    <img [src]="spriteActual" alt="Jugador">
+  <div class="personaje"
+       [style.left.px]="spriteX"
+       [style.top.px]="spriteY"
+       [style.background-image]="'url(' + spriteActual + ')'"
+       [style.background-position]="posicionFondo">
   </div>
 
   <div class="telon-negro" [class.activo]="transicionActiva">
     <div class="mensaje-transicion" *ngIf="transicionActiva">Entrando...</div>
+  </div>
+
+  <div class="d-pad-contenedor">
+    <div></div>
+    <button class="d-pad-boton arriba"
+            (mousedown)="iniciarMovimientoCelular('w')"
+            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('w')"
+            (mouseup)="detenerMovimientoCelular()"
+            (touchend)="detenerMovimientoCelular()"
+            (mouseleave)="detenerMovimientoCelular()">
+      ▲
+    </button>
+    <div></div>
+
+    <button class="d-pad-boton izquierda"
+            (mousedown)="iniciarMovimientoCelular('a')"
+            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('a')"
+            (mouseup)="detenerMovimientoCelular()"
+            (touchend)="detenerMovimientoCelular()"
+            (mouseleave)="detenerMovimientoCelular()">
+      ◀
+    </button>
+    <div class="d-pad-centro"></div>
+    <button class="d-pad-boton derecha"
+            (mousedown)="iniciarMovimientoCelular('d')"
+            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('d')"
+            (mouseup)="detenerMovimientoCelular()"
+            (touchend)="detenerMovimientoCelular()"
+            (mouseleave)="detenerMovimientoCelular()">
+      ▶
+    </button>
+
+    <div></div>
+    <button class="d-pad-boton abajo"
+            (mousedown)="iniciarMovimientoCelular('s')"
+            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('s')"
+            (mouseup)="detenerMovimientoCelular()"
+            (touchend)="detenerMovimientoCelular()"
+            (mouseleave)="detenerMovimientoCelular()">
+      ▼
+    </button>
+    <div></div>
   </div>
 </div>
