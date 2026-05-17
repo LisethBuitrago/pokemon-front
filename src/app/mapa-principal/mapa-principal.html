@@ -1,4 +1,9 @@
 <div class="pantalla-gba">
+
+  <button class="btn-info-flotante" (click)="toggleMenuStart()">
+    <span class="pixel-text">INFO</span>
+  </button>
+
   <div class="mundo" [style.transform]="'translate(' + -camaraX + 'px, ' + -camaraY + 'px)'">
     <img src="/mapa-pueblo.png" class="imagen-mapa">
   </div>
@@ -10,48 +15,110 @@
        [style.background-position]="posicionFondo">
   </div>
 
+  <div class="menu-inicio-gba" *ngIf="menuStartAbierto">
+    <div class="opcion-item" *ngFor="let opcion of opcionesMenu; let i = index"
+         [class.seleccionada]="i === menuSeleccionado">
+      <span class="flecha-retro" *ngIf="i === menuSeleccionado">▶</span>
+      <span class="texto-opcion">{{ opcion }}</span>
+    </div>
+  </div>
+
+  <div class="pantalla-equipo-pokemon" *ngIf="pantallaPokemonAbierta">
+    <div class="header-pokemon-panel">
+      <span class="pixel-title">ELIGE UN POKÉMON</span>
+    </div>
+
+    <div class="grid-6-slots">
+      <div class="slot-party" *ngFor="let index of [0, 1, 2, 3, 4, 5]"
+           [class.slot-cursor]="index === pokemonSeleccionado" [class.slot-lleno]="equipoPokemon[index]">
+        <ng-container *ngIf="equipoPokemon[index]; else slotVacio">
+          <div class="icon-box">
+            <img [src]="obtenerSpriteMini(equipoPokemon[index].pokeApiId)" class="mini-sprite-pixel">
+          </div>
+          <div class="datos-pkmn">
+            <div class="fila-superior">
+              <span class="pkmn-name">{{ equipoPokemon[index].nombre }}</span>
+              <span class="pkmn-gender">{{ equipoPokemon[index].genero }}</span>
+              <span class="pkmn-level">Lv.{{ equipoPokemon[index].nivel }}</span>
+            </div>
+            <div class="fila-hp">
+              <div class="hp-bar-container">
+                <div class="hp-fill"
+                     [style.width.%]="(equipoPokemon[index].hpActual / equipoPokemon[index].hpMax) * 100"></div>
+              </div>
+              <span class="hp-text">{{ equipoPokemon[index].hpActual }}/{{ equipoPokemon[index].hpMax }}</span>
+            </div>
+          </div>
+        </ng-container>
+        <ng-template #slotVacio>
+          <div class="caja-vacia-retro"><span>---</span></div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="footer-instrucciones"><span class="btn-leyenda">🔄 Tecla B o Retroceso: REGRESAR</span></div>
+  </div>
+
+  <div class="interfaz-pc-bill" *ngIf="menuPcAbierto">
+    <div class="contenedor-pc">
+
+      <div class="pestañas-cajas">
+        <button [class.activa]="cajaActiva === 1" (click)="cambiarCaja(1)">CAJA 1</button>
+        <button [class.activa]="cajaActiva === 2" (click)="cambiarCaja(2)">CAJA 2</button>
+        <button class="btn-cerrar-pc" (click)="togglePcBill()">SALIR</button>
+      </div>
+
+      <div class="cuadricula-almacenamiento">
+        <div class="slot-pc"
+             *ngFor="let slot of [].constructor(30); let i = index"
+             [class.bajo-cursor]="i === indexSeleccionado">
+
+          <ng-container *ngIf="cajaActiva === 1 ? caja1[i] : caja2[i]; let pokemon">
+            <img [src]="obtenerSpriteMini(pokemon.pokeApiId)" class="sprite-mini-pixel" [alt]="pokemon.nombre">
+            <span class="lvl-tag">Nv.{{ pokemon.nivel }}</span>
+          </ng-container>
+
+          <div *ngIf="!(cajaActiva === 1 ? caja1[i] : caja2[i])" class="vacio-pixel"></div>
+        </div>
+      </div>
+
+      <div class="detalles-seleccion">
+        <p *ngIf="cajaActiva === 1 ? caja1[indexSeleccionado] : caja2[indexSeleccionado]; let seleccionado">
+          SELECCIONADO: <strong>{{ seleccionado.nombre }}</strong>
+        </p>
+        <p *ngIf="!(cajaActiva === 1 ? caja1[indexSeleccionado] : caja2[indexSeleccionado])">
+          SLOT VACÍO (POS: {{ indexSeleccionado + 1 }})
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="telon-negro" [class.activo]="transicionActiva">
     <div class="mensaje-transicion" *ngIf="transicionActiva">Entrando...</div>
   </div>
 
   <div class="d-pad-contenedor">
     <div></div>
-    <button class="d-pad-boton arriba"
-            (mousedown)="iniciarMovimientoCelular('w')"
-            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('w')"
-            (mouseup)="detenerMovimientoCelular()"
-            (touchend)="detenerMovimientoCelular()"
-            (mouseleave)="detenerMovimientoCelular()">
-      ▲
+    <button class="d-pad-boton arriba" (mousedown)="iniciarMovimientoCelular('w')"
+            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('w')" (mouseup)="detenerMovimientoCelular()"
+            (touchend)="detenerMovimientoCelular()" (mouseleave)="detenerMovimientoCelular()">▲
     </button>
     <div></div>
 
-    <button class="d-pad-boton izquierda"
-            (mousedown)="iniciarMovimientoCelular('a')"
-            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('a')"
-            (mouseup)="detenerMovimientoCelular()"
-            (touchend)="detenerMovimientoCelular()"
-            (mouseleave)="detenerMovimientoCelular()">
-      ◀
-    </button>
-    <div class="d-pad-centro"></div>
-    <button class="d-pad-boton derecha"
-            (mousedown)="iniciarMovimientoCelular('d')"
-            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('d')"
-            (mouseup)="detenerMovimientoCelular()"
-            (touchend)="detenerMovimientoCelular()"
-            (mouseleave)="detenerMovimientoCelular()">
-      ▶
+    <button class="d-pad-boton izquierda" (mousedown)="iniciarMovimientoCelular('a')"
+            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('a')" (mouseup)="detenerMovimientoCelular()"
+            (touchend)="detenerMovimientoCelular()" (mouseleave)="detenerMovimientoCelular()">◀
     </button>
 
+    <button class="d-pad-action-a" (click)="procesarDireccion('action')">A</button>
+
+    <button class="d-pad-boton derecha" (mousedown)="iniciarMovimientoCelular('d')"
+            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('d')" (mouseup)="detenerMovimientoCelular()"
+            (touchend)="detenerMovimientoCelular()" (mouseleave)="detenerMovimientoCelular()">▶
+    </button>
     <div></div>
-    <button class="d-pad-boton abajo"
-            (mousedown)="iniciarMovimientoCelular('s')"
-            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('s')"
-            (mouseup)="detenerMovimientoCelular()"
-            (touchend)="detenerMovimientoCelular()"
-            (mouseleave)="detenerMovimientoCelular()">
-      ▼
+    <button class="d-pad-boton abajo" (mousedown)="iniciarMovimientoCelular('s')"
+            (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('s')" (mouseup)="detenerMovimientoCelular()"
+            (touchend)="detenerMovimientoCelular()" (mouseleave)="detenerMovimientoCelular()">▼
     </button>
     <div></div>
   </div>

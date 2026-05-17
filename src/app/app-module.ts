@@ -18,6 +18,7 @@ import { AdminObjetos } from './admin-objetos/admin-objetos';
 import { AdminEntrenadores } from './admin-entrenadores/admin-entrenadores';
 import { CajaDialogo } from './caja-dialogo/caja-dialogo';
 import { ProfesorOakPresentacion } from './profesor-oak-presentacion/profesor-oak-presentacion';
+import { Pokemon } from './pokemon/pokemon';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ProfesorOakPresentacion } from './profesor-oak-presentacion/profesor-oa
     AdminEntrenadores,
     CajaDialogo,
     ProfesorOakPresentacion,
+    Pokemon,
   ],
   imports: [BrowserModule, AppRoutingModule, RouterModule, FormsModule, HttpClientModule],
   providers: [provideBrowserGlobalErrorListeners()],

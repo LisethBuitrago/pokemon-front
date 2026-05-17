@@ -12,6 +12,7 @@ import { AdminPokemon } from './admin-pokemon/admin-pokemon';
 import { CrearCuentaUsuario } from './crearcuenta-usuario/crearcuenta-usuario';
 import { CajaDialogo } from './caja-dialogo/caja-dialogo';
 import { ProfesorOakPresentacion } from './profesor-oak-presentacion/profesor-oak-presentacion';
+import { Pokemon } from './pokemon/pokemon';
 
 const routes: Routes = [
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'admin-objetos', component: AdminObjetos },
   {path: 'caja-dialogo', component: CajaDialogo},
   {path: 'profesor-oak-presentacion', component: ProfesorOakPresentacion},
+  {path: 'pokemon', component: Pokemon},
   { path: '**', redirectTo: '' }, //esta linea siempre va a lo ultimo att:lis
 ];
 
