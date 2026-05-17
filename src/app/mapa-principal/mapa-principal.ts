@@ -1,5 +1,5 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
-// import { UsuarioService } from '../services/usuario.service';
+import { Component, HostListener, inject, OnInit, OnDestroy } from '@angular/core';
+import { JuegoService } from '../services/juego.service';
 
 @Component({
   selector: 'app-mapa-principal',
@@ -7,7 +7,13 @@ import { Component, HostListener, inject, OnInit } from '@angular/core';
   templateUrl: './mapa-principal.html',
   styleUrl: './mapa-principal.css',
 })
-export class MapaPrincipal implements OnInit {
+export class MapaPrincipal implements OnInit, OnDestroy {
+  private juegoService = inject(JuegoService);
+
+  spritePersonajeMujer = "https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/green_manga_by_miused_dfz6h8l_ntt5ih";
+  spritePersonajeHombre = "https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/overworld_sprite_template_for_pokemon_games_by_cynthiacelestic_d8h0v36_cpg5j4";
+
+  spriteActual = '';
 
   paso = 32;
   anchoMapa = 1024;
@@ -18,11 +24,21 @@ export class MapaPrincipal implements OnInit {
   pX = 608;
   pY = 192;
 
-  spriteActual = 'assets/sprites/chico-abajo.png';
-
   camaraX = 0; camaraY = 0;
   spriteX = 0; spriteY = 0;
   transicionActiva = false;
+  estaMoviendose = false;
+  velocidadPaso = 100;
+
+  anchoFrame = 32;
+  altoFrame = 48;
+  frameX = 0;
+  frameY = 0;
+  posicionFondo = '0px 0px';
+
+  musicaMapa = new Audio();
+
+  private intervaloCelular: any = null;
 
   colisiones: number[][] = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -52,26 +68,47 @@ export class MapaPrincipal implements OnInit {
   ];
 
   ngOnInit() {
+    if (this.juegoService.generoSeleccionado === 'mujer') {
+      this.spriteActual = this.spritePersonajeMujer;
+    } else {
+      this.spriteActual = this.spritePersonajeHombre;
+    }
+
     this.actualizarPosicion();
+    this.actualizarSprite();
+
+    this.musicaMapa.src = 'mapaprincipal.mp3';
+    this.musicaMapa.loop = true;
+    this.musicaMapa.load();
+    this.musicaMapa.volume = 0.4;
+    this.musicaMapa.play().catch(error => console.log("Esperando interacción del usuario para reproducir audio:", error));
   }
 
   @HostListener('window:keydown', ['$event'])
   moverse(event: KeyboardEvent) {
-    if (this.transicionActiva) return;
+    const tecla = event.key.toLowerCase();
+    this.procesarDireccion(tecla);
+  }
+
+  procesarDireccion(tecla: string) {
+    if (this.transicionActiva || this.estaMoviendose) return;
 
     let proximoX = this.pX;
     let proximoY = this.pY;
-    let dir = 'abajo';
+    let seMovio = false;
 
-    switch (event.key.toLowerCase()) {
-      case 'w': case 'arrowup':    proximoY -= this.paso; dir = 'arriba'; break;
-      case 's': case 'arrowdown':  proximoY += this.paso; dir = 'abajo';  break;
-      case 'a': case 'arrowleft':  proximoX -= this.paso; dir = 'izq';    break;
-      case 'd': case 'arrowright': proximoX += this.paso; dir = 'der';    break;
+    switch (tecla) {
+      case 'w': case 'arrowup':    proximoY -= this.paso; this.frameY = 3; seMovio = true; break;
+      case 's': case 'arrowdown':  proximoY += this.paso; this.frameY = 0; seMovio = true; break;
+      case 'a': case 'arrowleft':  proximoX -= this.paso; this.frameY = 1; seMovio = true; break;
+      case 'd': case 'arrowright': proximoX += this.paso; this.frameY = 2; seMovio = true; break;
       default: return;
     }
 
-    if (proximoX < 0 || proximoX >= this.anchoMapa || proximoY < 0 || proximoY >= this.altoMapa) return;
+    if (proximoX < 0 || proximoX >= this.anchoMapa || proximoY < 0 || proximoY >= this.altoMapa) {
+      this.actualizarSprite();
+      return;
+    }
 
     const colDestino = Math.floor(proximoX / this.paso);
     const filaDestino = Math.floor(proximoY / this.paso);
@@ -81,28 +118,61 @@ export class MapaPrincipal implements OnInit {
       : 1;
 
     if (celdaDestino === 1) {
-      console.log("¡BOOM! Pared detectada en:", filaDestino, colDestino);
+      console.log("Pared detectada en:", filaDestino, colDestino);
+      this.actualizarSprite();
       return;
     }
 
     if (celdaDestino === 3) {
+      this.actualizarSprite();
       this.iniciarTransicionMapa();
       return;
     }
 
+    this.estaMoviendose = true;
     this.pX = proximoX;
     this.pY = proximoY;
-    this.spriteActual = `assets/sprites/chico-${dir}.png`;
+
+    if (seMovio) {
+      this.frameX = (this.frameX + 1) % 4;
+    }
+
+    this.actualizarSprite();
     this.actualizarPosicion();
+
+    setTimeout(() => {
+      this.estaMoviendose = false;
+    }, this.velocidadPaso);
+  }
+
+  iniciarMovimientoCelular(tecla: string) {
+    this.detenerMovimientoCelular();
+    this.procesarDireccion(tecla);
+    this.intervaloCelular = setInterval(() => {
+      this.procesarDireccion(tecla);
+    }, this.velocidadPaso);
+  }
+
+  detenerMovimientoCelular() {
+    if (this.intervaloCelular) {
+      clearInterval(this.intervaloCelular);
+      this.intervaloCelular = null;
+    }
+  }
+
+  actualizarSprite() {
+    const posX = -(this.frameX * this.anchoFrame);
+    const posY = -(this.frameY * this.altoFrame);
+    this.posicionFondo = `${posX}px ${posY}px`;
   }
 
   iniciarTransicionMapa() {
     if (this.transicionActiva) return;
 
-    console.log("🚪 ¡Puerta detectada! Iniciando transición...");
+    console.log("Iniciando transición");
     this.transicionActiva = true;
-    setTimeout(() => {
 
+    setTimeout(() => {
       if (this.pY < 100) {
         this.pX = 544;
         this.pY = 600;
@@ -124,5 +194,12 @@ export class MapaPrincipal implements OnInit {
     this.camaraY = Math.max(0, Math.min(this.altoMapa - this.altoVista, this.pY - this.altoVista / 2));
     this.spriteX = this.pX - this.camaraX;
     this.spriteY = this.pY - this.camaraY;
+  }
+
+  ngOnDestroy() {
+    this.detenerMovimientoCelular();
+    if (this.musicaMapa) {
+      this.musicaMapa.pause();
+    }
   }
 }

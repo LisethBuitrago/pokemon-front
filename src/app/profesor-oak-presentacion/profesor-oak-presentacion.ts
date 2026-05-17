@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { JuegoService } from '../services/juego.service';
 
 @Component({
   selector: 'app-profesor-oak-presentacion',
@@ -10,14 +11,20 @@ import { Router } from '@angular/router';
 export class ProfesorOakPresentacion implements OnInit, OnDestroy {
   profesor = "https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/Professor_Oak7-removebg-preview_mnwi8o";
   enemigo="https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/what-the-heck-is-on-garys-hand-v0-wl8in652c23f1-removebg-preview_hug9aa";
-  personajeHombre="https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/833574-removebg-preview_ide0iy"
-  personajeMujer="https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/4460162_orig-removebg-preview_wlntbp"
+  personajeHombre="https://i.redd.it/pok%C3%A9mon-master-red-pok%C3%A9mon-v0-riknikgp1rgd1.png?width=206&format=png&auto=webp&s=72aabfa02e8332cfc1c637e0267c8985c78db0df";
+  personajeMujer="https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/4460162_orig-removebg-preview_wlntbp";
 
   mensajeActual = 1;
   personajeVisible = 'oak';
   musicaOak = new Audio();
 
-  constructor(private router: Router, private cd: ChangeDetectorRef) {}
+  iniciandoTransicion = false;
+
+  constructor(
+    private router: Router,
+    private cd: ChangeDetectorRef,
+    private juegoService: JuegoService
+  ) {}
 
   ngOnInit() {
     this.musicaOak.src = 'Welcome.mp3';
@@ -30,14 +37,17 @@ export class ProfesorOakPresentacion implements OnInit, OnDestroy {
   }
 
   elegirPersonaje(genero: string) {
+    this.juegoService.generoSeleccionado = genero;
+
     this.personajeVisible = genero;
     this.mensajeActual = 4;
     this.cd.detectChanges();
+
     setTimeout(() => {
       this.personajeVisible = 'oak';
       this.mensajeActual = 5;
       this.cd.detectChanges();
-    }, 8000);
+    }, 7500);
 
     setTimeout(() => { this.mensajeActual = 6; this.cd.detectChanges(); }, 13000);
     setTimeout(() => { this.mensajeActual = 7; this.cd.detectChanges(); }, 18000);
@@ -47,11 +57,21 @@ export class ProfesorOakPresentacion implements OnInit, OnDestroy {
       this.personajeVisible = 'enemigo';
       this.cd.detectChanges();
     }, 23000);
+
     setTimeout(() => {
       this.mensajeActual = 9;
       this.personajeVisible = genero;
       this.cd.detectChanges();
-    }, 27000);
+    }, 28000);
+
+    setTimeout(() => {
+      this.iniciandoTransicion = true;
+      this.cd.detectChanges();
+    }, 32000);
+
+    setTimeout(() => {
+      this.router.navigate(['/mapa-principal']);
+    }, 33500);
   }
 
   ngOnDestroy() {

@@ -34,13 +34,12 @@
 }
 
 .sprite-enemigo {
-  width: 250px;
+  width: 300px;
   max-width: 90vw;
   height: auto;
   z-index: 2;
   position: relative;
-
-
+  top: 45px;
 }
 
 .plataforma {
@@ -145,5 +144,26 @@
 }
 
 .jugador-hombre {
-  width: 300px;
+  width: 180px;
+}
+.jugador-mujer {
+  width: 380px;
+}
+
+.transicion-pantalla {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s ease-in;
+}
+
+.transicion-pantalla.transicion-activa {
+  opacity: 1;
+  pointer-events: all;
 }
