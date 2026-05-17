@@ -6,9 +6,9 @@
       <div class="fila-formulario">
         <div class="etiqueta-con-icono">
           <img [src]="pokeball" alt="pokeball" class="icono-gba">
-          <label>USUARIO</label>
+          <label>CORREO</label>
         </div>
-        <input type="text" class="input-gba" placeholder="Tu nombre">
+        <input type="email" class="input-gba" [(ngModel)]="correo" placeholder="tu@correo.com">
       </div>
 
       <div class="fila-formulario">
@@ -16,11 +16,10 @@
           <img [src]="key" alt="llave" class="icono-key">
           <label>CONTRASEÑA</label>
         </div>
-        <input type="password" class="input-gba" placeholder="******">
+        <input type="password" class="input-gba" [(ngModel)]="contrasenia" placeholder="******">
       </div>
 
       <div class="contenedor-entrar">
-
         <button class="btn-gba" (click)="seleccionarOpcion('entrar')">
           <span class="flecha">▶</span> ENTRAR
         </button>
