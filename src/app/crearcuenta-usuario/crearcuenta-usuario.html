@@ -8,15 +8,15 @@
           <img [src]="pokeball" alt="pokeball" class="icono-gba">
           <label>USUARIO</label>
         </div>
-        <input type="text" class="input-gba" placeholder="Tu nombre">
+        <input type="text" [(ngModel)]="nombre" name="nombre" class="input-gba" placeholder="Tu nombre">
       </div>
 
       <div class="fila-formulario">
         <div class="etiqueta-con-icono">
-          <img [src]="correo" alt="correo" class="icono-gba">
+          <img [src]="correoIcono" alt="correo" class="icono-gba">
           <label>CORREO</label>
         </div>
-        <input type="email" class="input-gba" placeholder="tu@email.com">
+        <input type="email" [(ngModel)]="correo" name="correo" class="input-gba" placeholder="tu@email.com">
       </div>
 
       <div class="fila-formulario">
@@ -24,7 +24,7 @@
           <img [src]="key" alt="llave" class="icono-key">
           <label>CONTRASEÑA</label>
         </div>
-        <input type="password" class="input-gba" placeholder="******">
+        <input type="password" [(ngModel)]="contrasenia" name="contrasenia" class="input-gba" placeholder="******">
       </div>
 
       <div class="contenedor-entrar">
