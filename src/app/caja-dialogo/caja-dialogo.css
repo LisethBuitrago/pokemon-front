@@ -1,6 +1,10 @@
-/* 1. EL MARCO EXTERIOR RAYADO */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
 .cuadro-retro {
-  /* Fondo rayado diagonal (más delgado y nítido para GBA) */
   background: repeating-linear-gradient(
     -45deg,
     #70a0e0,
@@ -9,14 +13,11 @@
     #2850a0 12px
   );
 
-  /* Borde sólido oscuro por fuera */
-  border: 3px solid #2850a0;
-  border-radius: 12px; /* Esquinas perfectamente curvas */
 
-  /* Este padding define qué tan grueso se ve el marco rayado */
+  border: 3px solid #2850a0;
+  border-radius: 12px;
   padding: 6px;
 
-  /* Tamaño y sombras exteriores */
   margin: 15px auto;
   width: 90%;
   max-width: 700px;
@@ -24,43 +25,39 @@
   position: relative;
 }
 
-/* 2. EL FONDO BLANCO INTERIOR */
+
 .cuadro-interior {
   background-color: #ffffff;
 
-  /* Borde sólido oscuro por dentro */
   border: 3px solid #2850a0;
-  border-radius: 8px; /* Curva un poco más cerrada que la de afuera */
+  border-radius: 8px;
 
-  /* Espacio para que el texto no toque la línea azul */
   padding: 15px 25px;
 
-  /* Tipografía (se mantiene intacta) */
+
   color: #202020;
   font-family: 'Press Start 2P', 'Courier New', Courier, monospace;
   font-size: 16px;
   line-height: 1.8;
 
-  /* Sombra interna para el efecto de hundimiento */
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Evitar márgenes gigantes en los párrafos */
 .cuadro-interior ::ng-deep p {
   margin: 0 0 10px 0;
+  width:100%;
 }
 
-/* 3. LA FLECHA DE CONTINUAR */
+
 .flecha-continuar {
   position: absolute;
-  /* Posicionada respecto al cuadro interior para que no pise las rayas */
   bottom: 25px;
   right: 35px;
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 14px solid #d82800; /* Rojo clásico */
+  border-top: 14px solid #d82800;
   animation: rebotar 0.5s infinite alternate;
   cursor: pointer;
 }

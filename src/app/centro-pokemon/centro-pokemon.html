@@ -1,0 +1,45 @@
+<div class="pantalla-gba">
+  <div class="mundo" [style.transform]="'translate(' + -camaraX + 'px, ' + -camaraY + 'px)'">
+    <img [src]="imgCentroPokemon" class="imagen-mapa">
+  </div>
+
+  <div class="personaje"
+       [style.left.px]="spriteX"
+       [style.top.px]="spriteY"
+       [style.background-image]="'url(' + spriteActual + ')'"
+       [style.background-position]="posicionFondo">
+  </div>
+
+  <div class="contenedor-dialogo" *ngIf="dialogoVisible" (click)="siguienteMensaje()">
+    <app-caja-dialogo>
+      <p class="texto-dialogo">{{ textosEnfermera[mensajeActual] }}</p>
+    </app-caja-dialogo>
+  </div>
+
+  <div class="menu-opciones-gba" *ngIf="mostrarOpciones">
+    <div class="opcion-item"
+         *ngFor="let opcion of listaOpciones; let i = index"
+         [class.seleccionada]="i === opcionSeleccionadaIndex"
+         (mouseenter)="opcionSeleccionadaIndex = i"
+         (click)="elegirOpcion(opcion.id); $event.stopPropagation()">
+      <span class="flecha-retro" *ngIf="i === opcionSeleccionadaIndex"></span>
+      <span class="texto-opcion">{{ opcion.texto }}</span>
+    </div>
+  </div>
+
+  <div class="telon-negro" [class.activo]="transicionActiva">
+    <div class="mensaje-transicion" *ngIf="transicionActiva">Saliendo...</div>
+  </div>
+
+  <div class="d-pad-contenedor">
+    <div></div>
+    <button class="d-pad-boton arriba" (mousedown)="iniciarMovimientoCelular('w')" (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('w')" (mouseup)="detenerMovimientoCelular()" (touchend)="detenerMovimientoCelular()" (mouseleave)="detenerMovimientoCelular()">▲</button>
+    <div></div>
+    <button class="d-pad-boton izquierda" (mousedown)="iniciarMovimientoCelular('a')" (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('a')" (mouseup)="detenerMovimientoCelular()" (touchend)="detenerMovimientoCelular()" (mouseleave)="detenerMovimientoCelular()">◀</button>
+    <button class="d-pad-action-a" (click)="procesarBotonA()">A</button>
+    <button class="d-pad-boton derecha" (mousedown)="iniciarMovimientoCelular('d')" (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('d')" (mouseup)="detenerMovimientoCelular()" (touchend)="detenerMovimientoCelular()" (mouseleave)="detenerMovimientoCelular()">▶</button>
+    <div></div>
+    <button class="d-pad-boton abajo" (mousedown)="iniciarMovimientoCelular('s')" (touchstart)="$event.preventDefault(); iniciarMovimientoCelular('s')" (mouseup)="detenerMovimientoCelular()" (touchend)="detenerMovimientoCelular()" (mouseleave)="detenerMovimientoCelular()">▼</button>
+    <div></div>
+  </div>
+</div>
