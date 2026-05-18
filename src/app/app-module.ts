@@ -16,9 +16,11 @@ import { AdminPokemon } from './admin-pokemon/admin-pokemon';
 import { AdminAtaques } from './admin-ataques/admin-ataques';
 import { AdminObjetos } from './admin-objetos/admin-objetos';
 import { AdminEntrenadores } from './admin-entrenadores/admin-entrenadores';
-import { CajaDialogo } from './caja-dialogo/caja-dialogo';
-import { ProfesorOakPresentacion } from './profesor-oak-presentacion/profesor-oak-presentacion';
+
 import { Pokemon } from './pokemon/pokemon';
+import { CentroPokemon } from './centro-pokemon/centro-pokemon';
+import { ProfesorOakPresentacion } from './profesor-oak-presentacion/profesor-oak-presentacion';
+import { CajaDialogo } from './caja-dialogo/caja-dialogo';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { Pokemon } from './pokemon/pokemon';
     CajaDialogo,
     ProfesorOakPresentacion,
     Pokemon,
+    CentroPokemon,
   ],
   imports: [BrowserModule, AppRoutingModule, RouterModule, FormsModule, HttpClientModule],
   providers: [provideBrowserGlobalErrorListeners()],

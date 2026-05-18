@@ -1,5 +1,6 @@
 import { Component, HostListener, inject, OnInit, OnDestroy } from '@angular/core';
 import { JuegoService } from '../services/juego.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mapa-principal',
@@ -9,6 +10,7 @@ import { JuegoService } from '../services/juego.service';
 })
 export class MapaPrincipal implements OnInit, OnDestroy {
   private juegoService = inject(JuegoService);
+  private router = inject(Router);
 
   spritePersonajeMujer = "https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/green_manga_by_miused_dfz6h8l_ntt5ih";
   spritePersonajeHombre = "https://res.cloudinary.com/dqmacbgi6/image/upload/f_auto,q_auto/overworld_sprite_template_for_pokemon_games_by_cynthiacelestic_d8h0v36_cpg5j4";
@@ -152,10 +154,9 @@ export class MapaPrincipal implements OnInit, OnDestroy {
       this.actualizarSprite();
       return;
     }
-
     if (celdaDestino === 3) {
       this.actualizarSprite();
-      this.iniciarTransicionMapa();
+      this.iniciarTransicionMapa(filaDestino, colDestino);
       return;
     }
 
@@ -195,7 +196,7 @@ export class MapaPrincipal implements OnInit, OnDestroy {
     }
     if (tecla === 'backspace' || tecla === 'b') {
       this.pantallaPokemonAbierta = false;
-      this.menuStartAbierto = true; // Botón B regresa
+      this.menuStartAbierto = true;
     }
   }
 
@@ -272,14 +273,27 @@ export class MapaPrincipal implements OnInit, OnDestroy {
     this.posicionFondo = `${posX}px ${posY}px`;
   }
 
-  iniciarTransicionMapa() {
+  iniciarTransicionMapa(filaDestino: number, colDestino: number) {
     if (this.transicionActiva) return;
     this.transicionActiva = true;
     setTimeout(() => {
-      if (this.pY < 100) { this.pX = 544; this.pY = 600; }
-      else { this.pY += this.paso; }
-      this.actualizarPosicion();
-      setTimeout(() => { this.transicionActiva = false; }, 500);
+      if (filaDestino === 3 && colDestino === 6) {
+        this.router.navigate(['/interioredificio1']);
+      }
+      else if (filaDestino === 3 && colDestino === 10) {
+        this.router.navigate(['/centro-pokemon']);
+      }
+      // Lógica  para las demás puertas
+      else {
+        if (this.pY < 100) {
+          this.pX = 544; this.pY = 600;
+        } else {
+          this.pY += this.paso;
+        }
+        this.actualizarPosicion();
+
+        setTimeout(() => { this.transicionActiva = false; }, 500);
+      }
     }, 1000);
   }
 
